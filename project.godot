@@ -1,0 +1,43 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Ludum Dare 60"
+run/main_scene="uid://b1qfp4ktyj2r1"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+boot_splash/stretch_mode=0
+boot_splash/use_filter=false
+boot_splash/image="uid://chstkf3g7fmfb"
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=320
+window/size/viewport_height=180
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
+
+[gui]
+
+theme/default_font_antialiasing=0
+theme/default_font_subpixel_positioning=0
+theme/custom="uid://dmcqcp5t2gljr"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.17254902, 0.105882354, 0.18039216, 1)
+2d/snap/snap_2d_transforms_to_pixel=true

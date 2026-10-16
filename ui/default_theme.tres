@@ -1,0 +1,47 @@
+[gd_resource type="Theme" format=3 uid="uid://dmcqcp5t2gljr"]
+
+[ext_resource type="FontFile" uid="uid://bua7wgx1t0fr0" path="res://ui/fonts/Direct_Message.ttf" id="1_jlqpw"]
+[ext_resource type="Texture2D" uid="uid://dh7r567c3m2oi" path="res://ui/sprites/grabber.png" id="1_rom6p"]
+[ext_resource type="StyleBox" uid="uid://c70kcdifg82p0" path="res://ui/components/button_box_disabled.tres" id="1_y2c8c"]
+[ext_resource type="StyleBox" uid="uid://c3lpbvvx5tuev" path="res://ui/components/button_box_hover.tres" id="2_k2l3o"]
+[ext_resource type="StyleBox" uid="uid://ds8nt2faseo7m" path="res://ui/components/button_box_normal.tres" id="3_h40d0"]
+[ext_resource type="StyleBox" uid="uid://cxp3ija8l3plg" path="res://ui/components/button_box_pressed.tres" id="4_almxo"]
+[ext_resource type="StyleBox" uid="uid://dp1fxcfghvtk5" path="res://ui/components/slider_box_fill.tres" id="6_h40d0"]
+[ext_resource type="StyleBox" uid="uid://bxylg0f55xp17" path="res://ui/components/panel_box.tres" id="6_tk1f8"]
+[ext_resource type="StyleBox" uid="uid://cg7dsko6wgp2l" path="res://ui/components/slider_box_area.tres" id="7_almxo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i4llc"]
+
+[sub_resource type="FontVariation" id="FontVariation_jlqpw"]
+base_font = ExtResource("1_jlqpw")
+baseline_offset = 0.15
+
+[resource]
+default_font = SubResource("FontVariation_jlqpw")
+default_font_size = 5
+Button/colors/font_color = Color(1, 0.95686275, 0.8784314, 1)
+Button/colors/font_hover_color = Color(0.29411766, 0.23137255, 0.6117647, 1)
+Button/colors/font_pressed_color = Color(0.26666668, 0.5803922, 0.5372549, 1)
+Button/styles/disabled = ExtResource("1_y2c8c")
+Button/styles/focus = SubResource("StyleBoxEmpty_i4llc")
+Button/styles/hover = ExtResource("2_k2l3o")
+Button/styles/normal = ExtResource("3_h40d0")
+Button/styles/pressed = ExtResource("4_almxo")
+HSlider/constants/center_grabber = 0
+HSlider/icons/grabber = ExtResource("1_rom6p")
+HSlider/icons/grabber_disabled = ExtResource("1_rom6p")
+HSlider/icons/grabber_highlight = ExtResource("1_rom6p")
+HSlider/styles/grabber_area = ExtResource("6_h40d0")
+HSlider/styles/grabber_area_highlight = ExtResource("6_h40d0")
+HSlider/styles/slider = ExtResource("7_almxo")
+Label/colors/font_color = Color(1, 0.95686275, 0.8784314, 1)
+Label/font_sizes/font_size = 10
+MarginContainer/constants/margin_bottom = 2
+MarginContainer/constants/margin_left = 2
+MarginContainer/constants/margin_right = 2
+MarginContainer/constants/margin_top = 2
+Panel/styles/panel = ExtResource("6_tk1f8")
+ProgressBar/colors/font_color = Color(1, 0.95686275, 0.8784314, 1)
+ProgressBar/font_sizes/font_size = 5
+ProgressBar/styles/background = ExtResource("7_almxo")
+ProgressBar/styles/fill = ExtResource("6_h40d0")
