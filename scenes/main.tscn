@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://c8xy4k5nng5gt" path="res://scripts/game_controller.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://b8ole642gapph" path="res://scripts/machine.gd" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://2dt758c08a5j" path="res://scripts/board.gd" id="2_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://brpljk4kip7g" path="res://ui/sprites/card_slot.png" id="4_jyhfs"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2e22n"]
 
 [node name="Main" type="Node2D" unique_id=230154261]
 script = ExtResource("1_0wfyh")
@@ -84,7 +85,7 @@ custom_minimum_size = Vector2(100, 8)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture = ExtResource("4_jyhfs")
+texture = SubResource("PlaceholderTexture2D_2e22n")
 
 [node name="Actions" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection" unique_id=1381654775]
 custom_minimum_size = Vector2(0, 16)

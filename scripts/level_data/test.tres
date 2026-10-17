@@ -7,19 +7,23 @@ data = [[{
 "direction": "down"
 }]
 }, {
-"walls": []
-}, {
+"switch_id": 2,
 "walls": [{
-"direction": "left",
-"door_id": 1
+"direction": "right"
 }]
-}], [{}, {}, {
-"walls": [{
-"direction": "down"
 }, {
+"walls": [{
 "direction": "right",
 "door_id": 1
 }]
-}], [{}, {}, {
-"exit": true
+}], [{}, {}, {}], [{
+"switch_id": 1
+}, {}, {
+"exit": true,
+"walls": [{
+"direction": "up"
+}, {
+"direction": "left",
+"door_id": 2
+}]
 }]]

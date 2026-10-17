@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bjl8tuaj486wo"]
+
+[ext_resource type="Texture2D" uid="uid://ceiv3mr0mwpk4" path="res://sprites/switch.png" id="1_1i7pn"]
+[ext_resource type="Script" uid="uid://de4pfypnt7rrs" path="res://scripts/switch.gd" id="2_e08h5"]
+
+[node name="Switch" type="Sprite2D" unique_id=15951814]
+texture = ExtResource("1_1i7pn")
+script = ExtResource("2_e08h5")
