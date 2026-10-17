@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b4pqjaij5ej81"]
 
-[ext_resource type="Texture2D" uid="uid://biyu0bcpw1ns4" path="res://icon.svg" id="1_upbjj"]
+[ext_resource type="Texture2D" uid="uid://bpuorsxm3mvdb" path="res://sprites/base_tile.png" id="1_nm02e"]
+[ext_resource type="Script" uid="uid://bjg664tdfgao8" path="res://scripts/cell.gd" id="2_0s7o3"]
 
 [node name="Cell" type="Sprite2D" unique_id=1895937967]
-scale = Vector2(0.1484375, 0.1484375)
-texture = ExtResource("1_upbjj")
+texture = ExtResource("1_nm02e")
+script = ExtResource("2_0s7o3")
