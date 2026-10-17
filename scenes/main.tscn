@@ -1,3 +1,134 @@
 [gd_scene format=3 uid="uid://b1qfp4ktyj2r1"]
 
+[ext_resource type="Texture2D" uid="uid://biyu0bcpw1ns4" path="res://icon.svg" id="1_o5qli"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2e22n"]
+
 [node name="Main" type="Node2D" unique_id=230154261]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=578291867]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=2053186755]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=701057429]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Map" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=160680571]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=637909713]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer" unique_id=371520544]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1905014100]
+layout_mode = 2
+alignment = 2
+
+[node name="CardSlot" type="TextureRect" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1107598385]
+custom_minimum_size = Vector2(100, 8)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = SubResource("PlaceholderTexture2D_2e22n")
+
+[node name="Cards" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1085402137]
+layout_mode = 2
+alignment = 1
+
+[node name="Up" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/Cards" unique_id=211065719]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Up"
+
+[node name="Down" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/Cards" unique_id=683869493]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Down"
+
+[node name="Left" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/Cards" unique_id=897136321]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Left"
+
+[node name="Right" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/Cards" unique_id=1659231653]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Right"
+
+[node name="Sequence" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=494626896]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 2
+
+[node name="Execute" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Sequence" unique_id=436096439]
+layout_mode = 2
+text = "Execute"
+
+[node name="Actions" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Sequence" unique_id=1381654775]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/separation = 1
+
+[node name="Action" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Sequence/Actions" unique_id=74602044]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_o5qli")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Action2" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Sequence/Actions" unique_id=1631515929]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_o5qli")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Action3" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Sequence/Actions" unique_id=90344678]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_o5qli")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Action4" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Sequence/Actions" unique_id=1770139409]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_o5qli")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Action5" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Sequence/Actions" unique_id=159181595]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_o5qli")
+ignore_texture_size = true
+stretch_mode = 5
