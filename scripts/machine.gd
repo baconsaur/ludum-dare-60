@@ -1,14 +1,16 @@
 extends Control
 signal action_performed
+signal actions_complete
 
 @export var turn_length : float = 1.
-@export var max_actions : int = 10
+@export var max_actions : int = 15
 
 var action_obj = preload("res://scenes/action.tscn")
+var action_tween = null
 
 @onready var actions = $MachineSections/ActionSection/Actions
 @onready var execute_button = $MachineSections/Execute
-@onready var cards = $MachineSections/ActionSection/CardSection/Cards
+@onready var cards = $MachineSections/ActionSection/Cards
 
 func _on_execute_pressed() -> void:
 	if actions.get_child_count() == 0:
@@ -17,16 +19,17 @@ func _on_execute_pressed() -> void:
 	execute_button.disabled = true
 	toggle_cards(true)
 	
-	var tween = get_tree().create_tween()
+	action_tween = get_tree().create_tween()
 
 	for action in actions.get_children():
-		tween.tween_callback(func():
+		action_tween.tween_callback(func():
 			action.perform_action()
 			emit_signal("action_performed", action.action_type)
 		).set_delay(turn_length)
 
-	await tween.finished
-	toggle_cards(false)
+	await action_tween.finished
+	action_tween = null
+	emit_signal("actions_complete")
 
 func toggle_cards(disable : bool):
 	for card in cards.get_children():
@@ -59,3 +62,6 @@ func _on_left_pressed() -> void:
 
 func _on_right_pressed() -> void:
 	add_action("right")
+
+func _on_wait_pressed() -> void:
+	add_action(null)
