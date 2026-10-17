@@ -1,3 +1,4 @@
+class_name Action
 extends Control
 
 enum ActionType {

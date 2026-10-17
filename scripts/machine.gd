@@ -1,4 +1,5 @@
 extends Control
+signal action_performed
 
 @export var turn_length : float = 1.
 @export var max_actions : int = 10
@@ -19,8 +20,10 @@ func _on_execute_pressed() -> void:
 	var tween = get_tree().create_tween()
 
 	for action in actions.get_children():
-		# TODO
-		tween.tween_callback(action.perform_action).set_delay(turn_length)
+		tween.tween_callback(func():
+			action.perform_action()
+			emit_signal("action_performed", action.action_type)
+		).set_delay(turn_length)
 
 	await tween.finished
 	toggle_cards(false)
