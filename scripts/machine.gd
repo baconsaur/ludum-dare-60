@@ -10,6 +10,7 @@ var action_tween = null
 
 @onready var actions = $MachineSections/ActionSection/Actions
 @onready var execute_button = $MachineSections/Execute
+@onready var undo_button = $MachineSections/ActionSection/HBoxContainer/Undo
 @onready var cards = $MachineSections/ActionSection/Cards
 
 func _on_execute_pressed() -> void:
@@ -47,9 +48,15 @@ func add_action(action_type):
 func update_queue():
 	if actions.get_child_count() > 0:
 		execute_button.disabled = false
+		undo_button.disabled = false
+	else:
+		execute_button.disabled = true
+		undo_button.disabled = true
 	
 	if actions.get_child_count() >= max_actions:
 		toggle_cards(true)
+	else:
+		toggle_cards(false)
 
 func _on_up_pressed() -> void:
 	add_action("up")
@@ -65,3 +72,12 @@ func _on_right_pressed() -> void:
 
 func _on_wait_pressed() -> void:
 	add_action(null)
+
+func _on_undo_pressed() -> void:
+	if not actions.get_child_count(): return
+	
+	var last_action = actions.get_child(-1)
+	actions.remove_child(last_action)
+	last_action.queue_free()
+	
+	update_queue()
