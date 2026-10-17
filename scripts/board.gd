@@ -60,7 +60,7 @@ func move_player(movement):
 		player_pos - next_cell, unlocked_doors
 	): return
 	if not grid[player_pos.x][player_pos.y].can_pass(
-		player_pos - next_cell, unlocked_doors
+		player_pos - next_cell * -1, unlocked_doors
 	): return
 	
 	player_pos = next_cell
