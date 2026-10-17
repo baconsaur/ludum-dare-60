@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dfuv1rhoqtluh"]
+
+[ext_resource type="Texture2D" uid="uid://biyu0bcpw1ns4" path="res://icon.svg" id="1_h1spn"]
+[ext_resource type="Script" uid="uid://csshoh11k131o" path="res://scripts/action.gd" id="2_3jgle"]
+
+[node name="Action" type="TextureButton" unique_id=1688467474]
+custom_minimum_size = Vector2(16, 16)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_h1spn")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_3jgle")
