@@ -14,12 +14,10 @@ var grid = []
 var player_pos = spawn_point
 var unlocked_doors = []
 var player = null
+var open_door_sprite = preload("res://sprites/door_open.png")
+var closed_door_sprite = preload("res://sprites/wall.png")
 
-var test_map = preload("res://scripts/level_data/test.tres")
-
-func _ready():
-	
-	var map_data = test_map.data
+func configure_level(map_data):
 	for i in range(map_data.size()):
 		grid.append([])
 		for j in range(map_data[i].size()):
@@ -39,13 +37,14 @@ func _ready():
 	add_child(player)
 	
 	player.position = get_cell_pos(spawn_point.x, spawn_point.y)
-	num_cols = map_data[0].size()
-	num_rows = map_data[0][0].size()
+	num_cols = map_data.size()
+	num_rows = map_data[0].size()
+	update_doors()
 
 func get_cell_pos(x, y):
 	return Vector2(
 		x * cell_size - num_rows * cell_size / 2,
-		y * cell_size - num_cols * cell_size
+		y * cell_size - num_cols * cell_size / 2 - cell_size,
 	)
 
 func move_player(movement):
@@ -56,16 +55,16 @@ func move_player(movement):
 	
 	if next_cell.x >= grid.size() or next_cell.y >= grid[next_cell.x].size(): return
 	
+	# Block entry
 	if not grid[next_cell.x][next_cell.y].can_pass(
 		player_pos - next_cell, unlocked_doors
 	): return
+	# Block exit
 	if not grid[player_pos.x][player_pos.y].can_pass(
-		player_pos - next_cell * -1, unlocked_doors
-	): return
+		next_cell - player_pos, unlocked_doors): return
 	
 	player_pos = next_cell
-	player.position = get_cell_pos(player_pos.x, player_pos.y) - Vector2(cell_size / 2, 0)
-	
+	player.position = get_cell_pos(player_pos.x, player_pos.y)
 	grid[player_pos.x][player_pos.y].trigger()
 	
 	if player_pos == exit:
@@ -82,8 +81,9 @@ func update_doors():
 	for row in grid:
 		for cell in row:
 			for blocker in cell.blockers:
-				if blocker.get("door_id") in unlocked_doors:
-					blocker.obj.self_modulate.a = 0.1
+				var door_id = blocker.get("door_id")
+				if door_id in unlocked_doors or (door_id and door_id < 0 and !(abs(door_id) in unlocked_doors)):
+					blocker.obj.texture = open_door_sprite
 				else:
-					blocker.obj.self_modulate.a = 1
+					blocker.obj.texture = closed_door_sprite
 					

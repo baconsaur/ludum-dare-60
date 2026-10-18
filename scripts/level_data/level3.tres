@@ -1,0 +1,29 @@
+[gd_resource type="JSON" format=3 uid="uid://bm51arwmr4gm8"]
+
+[resource]
+data = [[{
+"spawn": true,
+"walls": [{
+"direction": "down"
+}]
+}, {
+"switch_id": 2,
+"walls": [{
+"direction": "right"
+}]
+}, {
+"walls": [{
+"direction": "right",
+"door_id": 1
+}]
+}], [{}, {}, {}], [{
+"switch_id": 1
+}, {}, {
+"exit": true,
+"walls": [{
+"direction": "up"
+}, {
+"direction": "left",
+"door_id": 2
+}]
+}]]

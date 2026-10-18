@@ -18,6 +18,7 @@ func _on_execute_pressed() -> void:
 		return
 		
 	execute_button.disabled = true
+	undo_button.disabled = true
 	toggle_cards(true)
 	
 	action_tween = get_tree().create_tween()
@@ -26,7 +27,8 @@ func _on_execute_pressed() -> void:
 		action_tween.tween_callback(func():
 			action.perform_action()
 			emit_signal("action_performed", action.action_type)
-		).set_delay(turn_length)
+		).set_delay(turn_length / 2)
+		action_tween.tween_interval(turn_length / 2)
 
 	await action_tween.finished
 	action_tween = null
@@ -57,6 +59,14 @@ func update_queue():
 		toggle_cards(true)
 	else:
 		toggle_cards(false)
+
+func reset():
+	for action in actions.get_children():
+		action.queue_free()
+	
+	execute_button.disabled = true
+	undo_button.disabled = true
+	toggle_cards(false)
 
 func _on_up_pressed() -> void:
 	add_action("up")

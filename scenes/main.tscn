@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c8xy4k5nng5gt" path="res://scripts/game_controller.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://b8ole642gapph" path="res://scripts/machine.gd" id="2_0wfyh"]
-[ext_resource type="Script" uid="uid://2dt758c08a5j" path="res://scripts/board.gd" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://djjxi4ibdvo8y" path="res://scenes/board.tscn" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://brpljk4kip7g" path="res://ui/sprites/card_slot.png" id="4_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://dc4kkw26y5q03" path="res://ui/sprites/undo.png" id="4_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://baqdsb817cj4u" path="res://ui/sprites/undo_pressed.png" id="6_o6xl0"]
@@ -11,8 +11,7 @@
 [node name="Main" type="Node2D" unique_id=230154261]
 script = ExtResource("1_0wfyh")
 
-[node name="Board" type="Node2D" parent="." unique_id=180485663]
-script = ExtResource("2_jyhfs")
+[node name="Board" parent="." unique_id=1445003536 instance=ExtResource("2_o6xl0")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=53900973]
 
@@ -100,6 +99,7 @@ offset_transform_visual_only = false
 text = "RIGHT"
 
 [node name="Wait" type="Button" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards" unique_id=1971640928]
+visible = false
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -144,6 +144,49 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Turn 0"
 
+[node name="Reset" type="ColorRect" parent="CanvasLayer/MarginContainer" unique_id=815532007]
+visible = false
+layout_mode = 2
+color = Color(0.18431373, 0.16862746, 0.36078432, 0.8745098)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/Reset" unique_id=1018683983]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/Reset/VBoxContainer" unique_id=267725871]
+layout_mode = 2
+text = "YOU LOSE :("
+horizontal_alignment = 1
+
+[node name="Reset" type="Button" parent="CanvasLayer/MarginContainer/Reset/VBoxContainer" unique_id=1185170757]
+visible = false
+custom_minimum_size = Vector2(60, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "RESET"
+
+[node name="Retry" type="Button" parent="CanvasLayer/MarginContainer/Reset/VBoxContainer" unique_id=1887210367]
+visible = false
+custom_minimum_size = Vector2(60, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "RETRY"
+
+[node name="Next" type="Button" parent="CanvasLayer/MarginContainer/Reset/VBoxContainer" unique_id=1942923309]
+visible = false
+custom_minimum_size = Vector2(60, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "NEXT LEVEL"
+
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/Execute" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_execute_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards/Up" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_up_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards/Down" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_down_pressed"]
@@ -151,3 +194,6 @@ text = "Turn 0"
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards/Right" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_right_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards/Wait" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_wait_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/HBoxContainer/Undo" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_undo_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Reset/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Reset/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Reset/VBoxContainer/Next" to="." method="_on_next_pressed"]
