@@ -5,8 +5,82 @@
 [ext_resource type="PackedScene" uid="uid://djjxi4ibdvo8y" path="res://scenes/board.tscn" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://brpljk4kip7g" path="res://ui/sprites/card_slot.png" id="4_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://dc4kkw26y5q03" path="res://ui/sprites/undo.png" id="4_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://ni1mfl3h02tw" path="res://ui/sprites/up_button.png" id="4_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://depitjclb0h0j" path="res://ui/sprites/down_button.png" id="5_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://baqdsb817cj4u" path="res://ui/sprites/undo_pressed.png" id="6_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://co14y7cxotwbg" path="res://ui/sprites/undo_disabled.png" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://si7jjcohnooi" path="res://ui/sprites/left_button.png" id="6_trceg"]
+[ext_resource type="Texture2D" uid="uid://bo2txrlkgc54s" path="res://ui/sprites/right_button.png" id="7_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://coed3n4vwyonq" path="res://ui/sprites/lever1.png" id="12_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://brc7p75dd1gdw" path="res://ui/sprites/lever2.png" id="13_muem4"]
+[ext_resource type="Texture2D" uid="uid://4h2s7774vjoo" path="res://ui/sprites/lever3.png" id="14_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://ci2nmxwtwe6x8" path="res://ui/sprites/lever5.png" id="15_0ld40"]
+[ext_resource type="Texture2D" uid="uid://nuw8tbe4qs0k" path="res://ui/sprites/lever6.png" id="16_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://cbsvk5ufui7pq" path="res://ui/sprites/lever4.png" id="17_yc10j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjpnt"]
+bg_color = Color(0.17254902, 0.105882354, 0.18039216, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.29411766, 0.23137255, 0.6117647, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="Animation" id="Animation_jscy8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_normal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_eb6dy")]
+}
+
+[sub_resource type="Animation" id="Animation_pm3ni"]
+resource_name = "pull"
+length = 1.000008363135904
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_normal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.6666667, 0.75, 0.8333333, 0.9166667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("12_eb6dy"), ExtResource("13_muem4"), ExtResource("14_dp3eg"), ExtResource("15_0ld40"), ExtResource("16_gqmmt"), ExtResource("15_0ld40"), ExtResource("17_yc10j"), ExtResource("14_dp3eg"), ExtResource("13_muem4"), ExtResource("12_eb6dy")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"execute"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y6deb"]
+_data = {
+&"RESET": SubResource("Animation_jscy8"),
+&"pull": SubResource("Animation_pm3ni")
+}
 
 [node name="Main" type="Node2D" unique_id=230154261]
 script = ExtResource("1_0wfyh")
@@ -34,71 +108,66 @@ offset_transform_visual_only = false
 script = ExtResource("2_0wfyh")
 
 [node name="MachineSections" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MachinePanel" unique_id=980740702]
+custom_maximum_size = Vector2(-1, 60)
 layout_mode = 2
-
-[node name="Execute" type="Button" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections" unique_id=436096439]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 4
-offset_transform_enabled = true
-offset_transform_position = Vector2(2, 0)
-offset_transform_visual_only = false
-disabled = true
-text = "EXECUTE"
 
 [node name="ActionSection" type="VBoxContainer" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections" unique_id=371520544]
 layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
-theme_override_constants/separation = 6
+offset_transform_position = Vector2(0, 6)
+offset_transform_visual_only = false
+theme_override_constants/separation = -7
 
 [node name="Cards" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection" unique_id=1085402137]
 layout_mode = 2
 offset_transform_enabled = true
+offset_transform_position = Vector2(0, -7)
 offset_transform_visual_only = false
 alignment = 1
 
-[node name="Up" type="Button" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards" unique_id=211065719]
-custom_minimum_size = Vector2(36, 0)
+[node name="Up" type="TextureButton" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards" unique_id=1167693424]
+custom_minimum_size = Vector2(36, 28)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, 2)
+offset_transform_position = Vector2(0, -15)
 offset_transform_visual_only = false
-text = "UP"
+texture_normal = ExtResource("4_ya4ey")
+ignore_texture_size = true
 
-[node name="Down" type="Button" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards" unique_id=683869493]
-custom_minimum_size = Vector2(36, 0)
+[node name="Down" type="TextureButton" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards" unique_id=86805751]
+custom_minimum_size = Vector2(36, 28)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, 2)
+offset_transform_position = Vector2(0, -15)
 offset_transform_visual_only = false
-text = "DOWN"
+texture_normal = ExtResource("5_eb6dy")
 
-[node name="Left" type="Button" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards" unique_id=897136321]
-custom_minimum_size = Vector2(36, 0)
+[node name="Left" type="TextureButton" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards" unique_id=2098291972]
+custom_minimum_size = Vector2(36, 28)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, 2)
+offset_transform_position = Vector2(0, -15)
 offset_transform_visual_only = false
-text = "LEFT"
+texture_normal = ExtResource("6_trceg")
 
-[node name="Right" type="Button" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards" unique_id=1659231653]
-custom_minimum_size = Vector2(36, 0)
+[node name="Right" type="TextureButton" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards" unique_id=1168158268]
+custom_minimum_size = Vector2(36, 28)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, 2)
+offset_transform_position = Vector2(0, -15)
 offset_transform_visual_only = false
-text = "RIGHT"
+texture_normal = ExtResource("7_a8y0u")
 
-[node name="Wait" type="Button" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards" unique_id=1971640928]
+[node name="Wait" type="TextureButton" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards" unique_id=310460431]
 visible = false
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
@@ -107,38 +176,68 @@ size_flags_vertical = 4
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, 2)
 offset_transform_visual_only = false
-text = "WAIT"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection" unique_id=1010305880]
 layout_mode = 2
 size_flags_horizontal = 4
+offset_transform_enabled = true
 
-[node name="CardSlot" type="TextureRect" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/HBoxContainer" unique_id=1107598385]
+[node name="CardSlot" type="TextureButton" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/HBoxContainer" unique_id=1500309477]
 custom_minimum_size = Vector2(100, 8)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("4_jyhfs")
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -11)
+offset_transform_visual_only = false
+texture_normal = ExtResource("4_jyhfs")
 
 [node name="Undo" type="TextureButton" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/HBoxContainer" unique_id=228526470]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -11)
+offset_transform_visual_only = false
 disabled = true
 texture_normal = ExtResource("4_tbgi4")
 texture_pressed = ExtResource("6_o6xl0")
 texture_disabled = ExtResource("6_tefeu")
 
-[node name="Actions" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection" unique_id=1381654775]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection" unique_id=1892672197]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_tjpnt")
+
+[node name="Actions" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/PanelContainer" unique_id=1381654775]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, -4)
+mouse_filter = 2
 theme_override_constants/separation = 1
 
+[node name="Execute" type="TextureButton" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections" unique_id=1571287394]
+custom_minimum_size = Vector2(42, 126)
+layout_mode = 2
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(6, -85)
+offset_transform_visual_only = false
+disabled = true
+texture_normal = ExtResource("12_eb6dy")
+ignore_texture_size = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/MarginContainer/MachinePanel/MachineSections/Execute" unique_id=1375766409]
+libraries/ = SubResource("AnimationLibrary_y6deb")
+
 [node name="Turn" type="Label" parent="CanvasLayer/MarginContainer" unique_id=1423988900]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -187,13 +286,13 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "NEXT LEVEL"
 
-[connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/Execute" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_execute_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards/Up" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_up_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards/Down" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_down_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards/Left" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_left_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards/Right" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_right_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards/Wait" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_wait_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/HBoxContainer/Undo" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_undo_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/Execute" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_execute_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Reset/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Reset/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Reset/VBoxContainer/Next" to="." method="_on_next_pressed"]

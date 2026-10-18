@@ -8,10 +8,11 @@ signal actions_complete
 var action_obj = preload("res://scenes/action.tscn")
 var action_tween = null
 
-@onready var actions = $MachineSections/ActionSection/Actions
+@onready var actions = $MachineSections/ActionSection/PanelContainer/Actions
 @onready var execute_button = $MachineSections/Execute
 @onready var undo_button = $MachineSections/ActionSection/HBoxContainer/Undo
 @onready var cards = $MachineSections/ActionSection/Cards
+@onready var animation_player = $MachineSections/Execute/AnimationPlayer
 
 func _on_execute_pressed() -> void:
 	if actions.get_child_count() == 0:
@@ -20,7 +21,9 @@ func _on_execute_pressed() -> void:
 	execute_button.disabled = true
 	undo_button.disabled = true
 	toggle_cards(true)
-	
+	animation_player.play("pull")
+
+func execute():
 	action_tween = get_tree().create_tween()
 
 	for action in actions.get_children():

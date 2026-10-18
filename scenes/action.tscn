@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://csshoh11k131o" path="res://scripts/action.gd" id="2_3jgle"]
 
 [node name="Action" type="TextureButton" unique_id=1688467474]
+self_modulate = Color(0.7058824, 0.7294118, 0.2784314, 1)
 custom_minimum_size = Vector2(16, 16)
 size_flags_horizontal = 4
 size_flags_vertical = 4
