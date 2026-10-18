@@ -33,6 +33,7 @@ func configure_level(map_data):
 				spawn_point = Vector2(i, j)
 			elif cell_data.get("exit"):
 				exit = Vector2(i, j)
+
 	player = player_obj.instantiate()
 	add_child(player)
 	

@@ -90,6 +90,7 @@ func _on_reset_pressed() -> void:
 	get_tree().reload_current_scene()
 
 func _on_retry_pressed() -> void:
+	board.queue_free()
 	init_level()
 
 func _on_next_pressed() -> void:
