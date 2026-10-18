@@ -1,0 +1,43 @@
+[gd_resource type="JSON" format=3 uid="uid://cvgrcogxxhdjx"]
+
+[resource]
+data = [[{
+"spawn": true,
+"walls": [{
+"direction": "down",
+"door_id": -1
+}]
+}, {
+"switch_id": 1,
+"walls": [{
+"direction": "down",
+"door_id": -1
+}]
+}, {
+"exit": true
+}], [{
+"walls": [{
+"direction": "down",
+"door_id": -2
+}]
+}, {
+"switch_id": 2,
+"walls": [{
+"direction": "left",
+"door_id": -2
+},{
+"direction": "down",
+"door_id": -3
+}]
+}, {
+"switch_id": 3,
+"walls": [{
+"direction": "left",
+"door_id": -3
+}]
+}], [{
+"walls": [{
+"direction": "down",
+"door_id": 3
+}]
+}, {}, {}]]
