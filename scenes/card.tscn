@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://i1x1fonw2y27"]
+
+[ext_resource type="Texture2D" uid="uid://oag48ldfasxa" path="res://sprites/card_up.png" id="1_6u4wf"]
+[ext_resource type="Script" uid="uid://c80bmrvfkil55" path="res://scripts/card.gd" id="2_ktuci"]
+
+[node name="Card" type="TextureRect" unique_id=1394400223]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -21.5
+offset_right = 17.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("1_6u4wf")
+stretch_mode = 2
+script = ExtResource("2_ktuci")

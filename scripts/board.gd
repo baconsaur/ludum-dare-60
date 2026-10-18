@@ -17,6 +17,8 @@ var player = null
 var open_door_sprite = preload("res://sprites/door_open.png")
 var closed_door_sprite = preload("res://sprites/wall.png")
 
+@onready var switch_sound = $SwitchSound
+
 func configure_level(map_data):
 	for i in range(map_data.size()):
 		grid.append([])
@@ -72,6 +74,7 @@ func move_player(movement):
 		emit_signal("reached_exit")
 
 func toggle_switch(cell):
+	switch_sound.play()
 	if cell.switch_id in unlocked_doors:
 		unlocked_doors.erase(cell.switch_id)
 	else:

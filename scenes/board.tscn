@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://djjxi4ibdvo8y"]
 
 [ext_resource type="Script" uid="uid://2dt758c08a5j" path="res://scripts/board.gd" id="1_bw3vb"]
+[ext_resource type="AudioStream" uid="uid://b3db55d18ful7" path="res://sounds/switch.wav" id="2_tx6nw"]
 
 [node name="Board" type="Node2D" unique_id=1445003536]
 script = ExtResource("1_bw3vb")
+
+[node name="SwitchSound" type="AudioStreamPlayer2D" parent="." unique_id=1693776228]
+stream = ExtResource("2_tx6nw")

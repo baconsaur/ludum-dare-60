@@ -21,6 +21,7 @@ var board = null
 @onready var retry_button = $CanvasLayer/MarginContainer/Reset/VBoxContainer/Retry
 @onready var next_button = $CanvasLayer/MarginContainer/Reset/VBoxContainer/Next
 @onready var end_text = $CanvasLayer/MarginContainer/Reset/VBoxContainer/Label
+@onready var success_sound = $SuccessSound
 
 func _ready():
 	var level_list = []
@@ -50,7 +51,7 @@ func perform_action(action_type):
 func complete_level():
 	machine.action_tween.kill()
 	level_success = true
-	
+	success_sound.play()
 	await get_tree().create_timer(1.0).timeout
 	
 	board.queue_free()
