@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c8xy4k5nng5gt" path="res://scripts/game_controller.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://b8ole642gapph" path="res://scripts/machine.gd" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://7wp35pp3mja1" path="res://sprites/background.png" id="2_5q0nq"]
 [ext_resource type="PackedScene" uid="uid://djjxi4ibdvo8y" path="res://scenes/board.tscn" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://brpljk4kip7g" path="res://ui/sprites/card_slot.png" id="4_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://dc4kkw26y5q03" path="res://ui/sprites/undo.png" id="4_tbgi4"]
@@ -28,7 +29,10 @@
 [ext_resource type="Texture2D" uid="uid://cbsvk5ufui7pq" path="res://ui/sprites/lever4.png" id="17_yc10j"]
 [ext_resource type="AudioStream" uid="uid://dxmlyol7ov1q0" path="res://sounds/lever.wav" id="24_y6deb"]
 [ext_resource type="AudioStream" uid="uid://dle8p6dijkdf0" path="res://sounds/turn.wav" id="28_2f3dj"]
+[ext_resource type="Texture2D" uid="uid://c0t7eesmg56qu" path="res://sprites/audio_on.png" id="29_qkpxi"]
 [ext_resource type="AudioStream" uid="uid://crpevd3yuuqvo" path="res://sounds/success.wav" id="29_yq6so"]
+[ext_resource type="Texture2D" uid="uid://qc68ov31rnrs" path="res://sprites/audio_off.png" id="30_5q0nq"]
+[ext_resource type="AudioStream" uid="uid://rfrjhjl12kxe" path="res://sounds/bgm.mp3" id="30_fv21b"]
 
 [sub_resource type="Animation" id="Animation_dp3eg"]
 length = 0.001
@@ -305,6 +309,10 @@ _data = {
 [node name="Main" type="Node2D" unique_id=230154261]
 script = ExtResource("1_0wfyh")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1759819002]
+position = Vector2(-10, -30)
+texture = ExtResource("2_5q0nq")
+
 [node name="Board" parent="." unique_id=1445003536 instance=ExtResource("2_o6xl0")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=53900973]
@@ -501,7 +509,6 @@ size_flags_vertical = 0
 text = "Turn 0"
 
 [node name="Reset" type="ColorRect" parent="CanvasLayer/MarginContainer" unique_id=815532007]
-visible = false
 layout_mode = 2
 color = Color(0.18431373, 0.16862746, 0.36078432, 0.8745098)
 
@@ -512,24 +519,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 15
 alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/Reset/VBoxContainer" unique_id=267725871]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-text = "YOU LOSE :("
+text = "Operate the machine and help Cass the robot collect parts to repair its VCR"
 horizontal_alignment = 1
+autowrap_mode = 2
+uppercase = true
 
 [node name="Reset" type="Button" parent="CanvasLayer/MarginContainer/Reset/VBoxContainer" unique_id=1185170757]
 visible = false
-custom_minimum_size = Vector2(60, 42)
+custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "RESET"
+text = "PLAY AGAIN"
 
 [node name="Retry" type="Button" parent="CanvasLayer/MarginContainer/Reset/VBoxContainer" unique_id=1887210367]
 visible = false
-custom_minimum_size = Vector2(60, 42)
+custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -537,14 +548,34 @@ text = "RETRY"
 
 [node name="Next" type="Button" parent="CanvasLayer/MarginContainer/Reset/VBoxContainer" unique_id=1942923309]
 visible = false
-custom_minimum_size = Vector2(60, 42)
+custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "NEXT LEVEL"
+text = "NEXT"
+
+[node name="OK" type="Button" parent="CanvasLayer/MarginContainer/Reset/VBoxContainer" unique_id=207466864]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "OK"
+
+[node name="AudioToggle" type="TextureButton" parent="CanvasLayer/MarginContainer" unique_id=145372268]
+self_modulate = Color(1, 1, 1, 0.67058825)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+toggle_mode = true
+texture_normal = ExtResource("29_qkpxi")
+texture_pressed = ExtResource("30_5q0nq")
 
 [node name="SuccessSound" type="AudioStreamPlayer" parent="." unique_id=1795254120]
 stream = ExtResource("29_yq6so")
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1063752769]
+stream = ExtResource("30_fv21b")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards/Up" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_up_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MachinePanel/MachineSections/ActionSection/Cards/Down" to="CanvasLayer/MarginContainer/MachinePanel" method="_on_down_pressed"]
@@ -557,3 +588,5 @@ stream = ExtResource("29_yq6so")
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Reset/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Reset/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Reset/VBoxContainer/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Reset/VBoxContainer/OK" to="." method="_on_ok_pressed"]
+[connection signal="toggled" from="CanvasLayer/MarginContainer/AudioToggle" to="." method="_on_audio_toggle_toggled"]

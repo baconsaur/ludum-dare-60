@@ -33,7 +33,7 @@ func configure(x, y, data):
 		if door_id:
 			new_wall.self_modulate = door_colors[abs(door_id) - 1]
 		else:
-			new_wall.self_modulate = Color("#1b1b1b")
+			new_wall.self_modulate = Color("#2f2b5c")
 		blockers.append({
 			"direction": wall.direction,
 			"door_id": door_id,

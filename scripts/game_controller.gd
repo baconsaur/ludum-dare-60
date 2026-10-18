@@ -20,6 +20,7 @@ var board = null
 @onready var reset_button = $CanvasLayer/MarginContainer/Reset/VBoxContainer/Reset
 @onready var retry_button = $CanvasLayer/MarginContainer/Reset/VBoxContainer/Retry
 @onready var next_button = $CanvasLayer/MarginContainer/Reset/VBoxContainer/Next
+@onready var ok_button = $CanvasLayer/MarginContainer/Reset/VBoxContainer/OK
 @onready var end_text = $CanvasLayer/MarginContainer/Reset/VBoxContainer/Label
 @onready var success_sound = $SuccessSound
 
@@ -56,15 +57,16 @@ func complete_level():
 	
 	board.queue_free()
 	
+	end_text.text = str(current_level + 1) + "/" + str(levels.size()) + " PARTS FOUND"
+	
 	if current_level + 1 >= levels.size():
-		end_text.text = "YOU WIN :)"
+		end_text.text += "\nCASS THANKS YOU FOR YOUR ASSISTANCE!"
 		reset_button.visible = true
 		retry_button.visible = false
 		next_button.visible = false
 		reset_modal.visible = true
 		return
 	
-	end_text.text = "GOOD JOB"
 	next_button.visible = true
 	reset_button.visible = false
 	retry_button.visible = false
@@ -81,7 +83,7 @@ func init_level():
 
 func complete_actions():
 	if level_success: return
-	end_text.text = "YOU LOSE :("
+	end_text.text = "PART NOT FOUND"
 	reset_button.visible = false
 	retry_button.visible = true
 	next_button.visible = false
@@ -97,3 +99,13 @@ func _on_retry_pressed() -> void:
 func _on_next_pressed() -> void:
 	current_level += 1
 	init_level()
+
+func _on_ok_pressed() -> void:
+	ok_button.visible = false
+	reset_modal.visible = false
+
+func _on_audio_toggle_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
+	else:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
